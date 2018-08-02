@@ -1,0 +1,1950 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "2.0",
+    "title": "Swagger CounterPath"
+  },
+  "host": "www.counterpath.com",
+  "basePath": "/assets/docs/guides/stretto200/api/#StrettoAPI/groups/",
+  "tags": [
+    {
+      "name": "Groups",
+      "description": "Working with groups"
+    },
+    {
+      "name": "Group-attributes",
+      "description": "Working with group-attributes and attributes"
+    },
+    {
+      "name": "pools",
+      "description": "Working with attribute pool",
+      "externalDocs": {
+        "description": "dominio",
+        "url": "http://"
+      }
+    },
+    {
+      "name": "templates",
+      "description": "Working with attribute pool",
+      "externalDocs": {
+        "description": "dominio",
+        "url": "http://"
+      }
+    },
+    {
+      "name": "profiles",
+      "description": "Working with attribute pool",
+      "externalDocs": {
+        "description": "dominio",
+        "url": "http://"
+      }
+    },
+    {
+      "name": "SIP",
+      "description": "Working with SIP users",
+      "externalDocs": {
+        "description": "dominio",
+        "url": "http://"
+      }
+    },
+    {
+      "name": "profiles-attributes",
+      "description": "Working with attribute pool",
+      "externalDocs": {
+        "description": "dominio",
+        "url": "http://"
+      }
+    }
+  ],
+  "subtags": [
+    {
+      "tags": "Groups",
+      "name": "Limits",
+      "description": "Working with group-attributes and attributes"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/stretto/prov/usergroup": {
+      "post": {
+        "summary": "Creating subgroups",
+        "description": "Example 1 Create a group with the name “asia.acphone.com” and max users “10000”, and add it under the parent group “acphone.com”.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "asia.acphone.com"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "parentGroupName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "acphone.com"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "maxUsers",
+            "type": "integer",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                10000
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Groups"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Create a group by copying",
+        "description": "Example 1 Create a group with the name “asia.acphone.com” by copying “europe.acphone.com” and add it under the parent group “acphone.com”.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "asia.acphone.com"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "parentGroupName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "acphone.com"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "maxUsers",
+            "type": "integer",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                10000
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Groups"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Modify group information",
+        "description": "Change the maximum users for the group “acphone.com”.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "asia.acphone.com"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "maxUsers",
+            "type": "integer",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                10000
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Groups"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a group",
+        "description": "Delete the group “antarctica.acphone.com”. All users, attributes, profiles, and templates defined for that group will be deleted. Because the “force” parameter is not included, the request will fail if this group has any content.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "antarctica.acphone.com"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Groups"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/stretto/prov/usergroup/copy": {
+      "put": {
+        "summary": "Create a group by copying",
+        "description": "Example 1 Create a group with the name “asia.acphone.com” by copying “europe.acphone.com” and add it under the parent group “acphone.com”.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "asia.acphone.com"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "parentGroupName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "acphone.com"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "maxUsers",
+            "type": "integer",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                10000
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Groups"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/stretto/prov/usergroup/devices": {
+      "delete": {
+        "summary": "Delete devices in a group",
+        "description": "Delete all the desktop devices in the group “acphone.com”.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "asia.acphone.com"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "deviceType",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "desktop"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Groups"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/stretto/prov/usergroup/attribute": {
+      "post": {
+        "summary": "Create a group-attribute by assigning a value",
+        "description": "Example 1 Assign the value “acphone.stun.com” to the attribute “stunServer” in the group acphone.com.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "acphone.com"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "attributeName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "stunServer"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "attributeValue",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "acphone.stun.com"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Group-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get group-attribute information",
+        "description": "Get information on all the group-attributes in the group “asia.acphone.com”.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "asia.acphone.com"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Group-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Modify a group-attribute",
+        "description": "Change the value of the group-attribute “stunServer” in the group “acphone.com” to “newStunServer.acphone.com”",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "acphone.com"
+              ]
+            }
+          },
+          {
+            "name": "attributeName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "stunServer"
+              ]
+            }
+          },
+          {
+            "name": "attributeValue",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "newStunServer.acphone.com"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Group-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a group-attribute",
+        "description": "Delete the group-attribute “XmppUser” from the group “acphone.com”.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "acphone.com"
+              ]
+            }
+          },
+          {
+            "name": "attributeName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "XmppUser"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Group-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/stretto/prov/usergroup/attribute/": {
+      "post": {
+        "summary": "Create an attribute in a group",
+        "description": "Add a new attribute “sipUserName” to the user’s default group.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "attributeName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "sipUserName"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Group-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get group-attribute information",
+        "description": "Get attribute information for group “asia.acphone.com”.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "asia.acphone.com"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Group-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Modify an attribute in a group",
+        "description": "Rename attribute “sipuser” to “sipUserName”.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "acphone.com"
+              ]
+            }
+          },
+          {
+            "name": "attributeName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "sipuser"
+              ]
+            }
+          },
+          {
+            "name": "newAttributeName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "sipUserName"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Group-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an attribute",
+        "description": "Delete the attribute “sipUserName” but only if its value is not defined anywhere.",
+        "parameters": [
+          {
+            "name": "force",
+            "in": "query",
+            "type": "boolean",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                false
+              ]
+            }
+          },
+          {
+            "name": "attributeName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "sipUserName"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Group-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/stretto/prov/attribute/pool": {
+      "post": {
+        "summary": "Create an attribute pool",
+        "description": "Create a “groupUser” type of attribute pool to provide values for the attribute “LicenseKey”.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "attributeName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "LicenseKey"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "poolType",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "groupUser"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "recycleEntries",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                true
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "pools"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get attribute pool information",
+        "description": "In this example, the attribute pool for the attribute “LicenseKey” has 3000 entries, of which 107 are assigned. This example omits some of the response for brevity. The first entry was assigned on October 6, 2011 to Bob Abbott. The second entry is not assigned.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "asia.acphone.com"
+              ]
+            }
+          },
+          {
+            "name": "attributeName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "LicenseKey"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "pools"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an attribute pool",
+        "description": "Delete the attribute pool associated with the attribute “LicenseKey”.",
+        "parameters": [
+          {
+            "name": "attributeName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "LicenseKey"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "pools"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/stretto/prov/attribute/pool/entry": {
+      "post": {
+        "summary": "Create an attribute pool entry",
+        "description": "Create an entry (in this example, a license key) in the pool that provides values for the attribute “LicenseKey”.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "attributeName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "LicenseKey"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "value",
+            "type": "integer",
+            "required": true,
+            "items": {
+              "enum": [
+                "EOAMVJNOIEJO20983J0V03"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "pools"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Assign or unassign an attribute pool entry",
+        "description": "For the indicated entry (a license key in this example) in the pool that provides values for the attribute “LicenseKey”, specify that the entry is no longer assigned.",
+        "parameters": [
+          {
+            "name": "value",
+            "in": "query",
+            "type": "integer",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "DLJ083M0VJI0D0K037J0"
+              ]
+            }
+          },
+          {
+            "name": "attributeName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "LicenseKey"
+              ]
+            }
+          },
+          {
+            "name": "assignee",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "babbott@acphone.com"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "pools"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an attribute pool entry",
+        "description": "Delete the indicated entry (98LJKD93JDOJ0LJ92SJS) from the pool associated with the attribute “LicenseKey”.",
+        "parameters": [
+          {
+            "name": "attributeName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "LicenseKey"
+              ]
+            }
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "type": "integer",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "98LJKD93JDOJ0LJ92SJS"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "pools"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/stretto/prov/template": {
+      "post": {
+        "summary": "Create a template in a group",
+        "description": "Create a new template “desktopBasic” in the admin’s default group.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "templateName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "desktopBasic"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "templates"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get template information",
+        "description": "Get information for the template “Desktop”.",
+        "parameters": [
+          {
+            "name": "templateName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "Desktop"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "templates"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Modify a template",
+        "description": "Replace all the current content of a template with the content specified in the PUT portion of the request. This example shows the template body but omits the HTTP headers (content-type and so on).",
+        "parameters": [
+          {
+            "name": "templateName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "iPhoneBasic"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "templates"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a template",
+        "description": "Delete the template “iPhone”.",
+        "parameters": [
+          {
+            "name": "templateName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "iPhone"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "templates"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/stretto/prov/profile": {
+      "post": {
+        "summary": "Create a profile in a group",
+        "description": "Create a new profile “PowerUser” in the admin’s default group.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profileName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "PowerUser"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "profiles"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get profile information",
+        "description": "Get profile information for the profile “Desktop”.",
+        "parameters": [
+          {
+            "name": "profileName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "Desktop"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "profiles"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Rename a profile",
+        "description": "Rename the profile “mobile” (in the admin’s default group) to “std:mobile”.",
+        "parameters": [
+          {
+            "name": "newProfileName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "std:mobile"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "mobile"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "profiles"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a profile",
+        "description": "Delete the profile “Desktop_euro” from the admin’s default group. If the profile is not in this group, nothing is deleted.",
+        "parameters": [
+          {
+            "name": "profileName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "Desktop_euro"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "profiles"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/stretto/prov/profile/copy": {
+      "put": {
+        "summary": "Create a profile by copying",
+        "description": "Create a new profile PowerUser in the zippyphone.com group by copying it from the group acphone.com.",
+        "parameters": [
+          {
+            "name": "sourceGroupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "acphone.com"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "PowerUser"
+              ]
+            }
+          },
+          {
+            "name": "targetGroupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "zippyphone.com"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "profiles"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/stretto/prov/profile/attribute": {
+      "post": {
+        "summary": "Create a profile-attribute",
+        "description": "Assign the value “6000@acphone.com” to the attribute “voiceMail” in the profile PowerUser in the admin’s default group.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profileName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "PowerUser"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "attributeName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "voiceMail"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "attributeValue",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "6000@acphone.com"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "profiles-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get profile information",
+        "description": "Get profile information for the profile “Desktop”.",
+        "parameters": [
+          {
+            "name": "profileName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "Desktop"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "profiles-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Modify the value of a profile-attribute",
+        "description": "Change the value for the attribute “voiceMail” in the profile “PowerUser” in the admin’s default group.",
+        "parameters": [
+          {
+            "name": "profileName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "PowerUser"
+              ]
+            }
+          },
+          {
+            "name": "attributeName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "voiceMail"
+              ]
+            }
+          },
+          {
+            "name": "attributeValue",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "6001@acphone.com"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "profiles-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a profile-attribute",
+        "description": "Delete the profile-attribute “XmppUser” from the profile “BasicUser” in the admin’s default group. In other words, remove the value assigned to the attribute “XmppUser” in the profile “BasicUser”. The attribute itself is not deleted from the group.",
+        "parameters": [
+          {
+            "name": "profileName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "BasicUser"
+              ]
+            }
+          },
+          {
+            "name": "attribute",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "XmppUser"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "profiles-attributes"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/stretto/subscriber/domain": {
+      "get": {
+        "summary": "Get SIP subscriber data",
+        "description": "To retrieve SIP the domain name for a group. A group can have only one associated SIP domain.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "groupName",
+            "type": "string",
+            "required": true,
+            "format": "data",
+            "items": {
+              "enum": [
+                "acphone.com"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "SIP"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a domain",
+        "description": "Creates a named SIP enterprise (domain) for a Stretto group.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "<group_name>"
+              ]
+            }
+          },
+          {
+            "name": "enterprise",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "<domain>"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "SIP"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete SIP domain",
+        "description": "Deletes SIP domain information for Stretto users.",
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "<group_name>"
+              ]
+            }
+          },
+          {
+            "name": "enterprise",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Name group",
+            "format": "data",
+            "items": {
+              "enum": [
+                "<enterprise_name>"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "SIP"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usergroup"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpexted error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Usergroup": {
+      "properties": {
+        "product_id": {
+          "type": "string",
+          "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of product."
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Display name of product."
+        },
+        "capacity": {
+          "type": "integer",
+          "description": "Capacity of product. For example, 4 people."
+        },
+        "image": {
+          "type": "string",
+          "description": "Image URL representing the product."
+        }
+      }
+    },
+    "Error": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
